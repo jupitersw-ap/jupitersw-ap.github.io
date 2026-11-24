@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#080b10" />
+    <meta
+      name="description"
+      content="Discover Jupiter on Solana: token swaps, liquidity routing, token prices, DeFi products and developer tools."
+    />
+    <meta
+      name="keywords"
+      content="Jupiter Swap, Jupiter Exchange, Solana Swap, Solana DEX Aggregator, swap SOL, swap USDC, JUP token, Solana DeFi, Jupiter liquidity"
+    />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:title" content="Jupiter Swap | Solana DeFi Trading" />
+    <meta
+      property="og:description"
+      content="Explore Jupiter's Solana swap aggregator, DeFi ecosystem and developer tools."
+    />
+    <title>Jupiter Swap™ | Solana Token Exchange & DeFi</title>
+    <style>
+      :root {
+        --bg: #080b10;
+        --panel: #10151d;
+        --lime: #c8f169;
+        --text: #f4f7f0;
+        --muted: #9aa6a0;
+        --line: #26313b;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font:
+          15px/1.6 Inter,
+          system-ui,
+          sans-serif;
+      }
+      a {
+        color: var(--lime);
+        text-decoration: none;
+      }
+      a:hover {
+        color: #e2ff9b;
+        text-decoration: underline;
+      }
+      .wrap {
+        width: min(1160px, calc(100% - 40px));
+        margin: auto;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        background: #080b10ed;
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--line);
+        z-index: 5;
+      }
+      .nav {
+        height: 74px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        color: var(--text);
+        font-weight: 900;
+        font-size: 22px;
+      }
+      .logo {
+        width: 39px;
+        height: 39px;
+        display: grid;
+        place-items: center;
+        border-radius: 13px;
+        background: var(--lime);
+        color: #11180c;
+        font-size: 21px;
+        font-weight: 1000;
+      }
+      nav {
+        display: flex;
+        gap: 23px;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      nav a {
+        color: #d0d8d3;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        padding: 11px 19px;
+        background: var(--lime);
+        color: #11180c;
+        font-weight: 850;
+      }
+      .btn:hover {
+        background: #e1ff9a;
+        color: #11180c;
+        text-decoration: none;
+      }
+      .outline {
+        border: 1px solid #46534c;
+        border-radius: 999px;
+        padding: 10px 18px;
+        color: var(--text);
+        font-weight: 750;
+        margin-left: 8px;
+      }
+      .hero {
+        padding: 76px 0 64px;
+        background:
+          radial-gradient(ellipse at 72% 35%, #b8ed5b20, transparent 38%),
+          radial-gradient(ellipse at 15% 80%, #4bc9b21a, transparent 32%),
+          #080b10;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 45px;
+        align-items: center;
+      }
+      .eyebrow {
+        display: inline-block;
+        border: 1px solid #52633c;
+        border-radius: 30px;
+        padding: 6px 12px;
+        color: var(--lime);
+        font-size: 11px;
+        font-weight: 850;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      h1 {
+        font-size: clamp(39px, 5.8vw, 67px);
+        line-height: 1.04;
+        letter-spacing: -2.6px;
+        margin: 20px 0 18px;
+      }
+      h1 span {
+        color: var(--lime);
+      }
+      .hero p {
+        max-width: 570px;
+        color: #b2beb8;
+        font-size: 16px;
+        margin: 0 0 25px;
+      }
+      .swap {
+        background: linear-gradient(145deg, #17202a, #0f151d);
+        border: 1px solid #34414a;
+        border-radius: 24px;
+        padding: 22px;
+        box-shadow: 0 25px 90px #0008;
+      }
+      .swaphead {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 16px;
+      }
+      .live {
+        color: var(--lime);
+        font-size: 11px;
+        font-weight: 800;
+      }
+      .token {
+        background: #0b1118;
+        border: 1px solid #2c3942;
+        border-radius: 15px;
+        padding: 16px;
+        margin: 10px 0;
+      }
+      .tokenrow {
+        display: flex;
+        justify-content: space-between;
+      }
+      .label {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .symbol {
+        font-weight: 800;
+      }
+      .amount {
+        font-size: 27px;
+        font-weight: 750;
+        margin-top: 8px;
+      }
+      .arrow {
+        text-align: center;
+        color: var(--lime);
+        font-size: 20px;
+        margin: -17px 0;
+        position: relative;
+      }
+      .full {
+        width: 100%;
+        margin-top: 15px;
+        padding: 14px;
+      }
+      .note {
+        font-size: 11px !important;
+        color: var(--muted) !important;
+        margin: 13px 0 0 !important;
+      }
+      section {
+        padding: 58px 0;
+      }
+      .tag {
+        color: var(--lime);
+        font-size: 11px;
+        font-weight: 850;
+        letter-spacing: 1.7px;
+        text-transform: uppercase;
+      }
+      h2 {
+        font-size: clamp(27px, 4vw, 39px);
+        line-height: 1.15;
+        margin: 9px 0 12px;
+      }
+      .intro {
+        color: var(--muted);
+        max-width: 710px;
+        margin: 0 0 26px;
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+      }
+      .card {
+        background: linear-gradient(145deg, var(--panel), #0e141b);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 22px;
+      }
+      .ico {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border-radius: 13px;
+        background: #c8f1691c;
+        color: var(--lime);
+        font-size: 20px;
+        margin-bottom: 14px;
+      }
+      .card h3 {
+        font-size: 17px;
+        margin: 0 0 7px;
+      }
+      .card p {
+        font-size: 13px;
+        color: var(--muted);
+        margin: 0;
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      .stat {
+        padding: 19px;
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        background: var(--panel);
+      }
+      .stat b {
+        display: block;
+        font-size: 23px;
+        color: var(--lime);
+      }
+      .stat span {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .resources {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .resource {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .resource strong {
+        font-size: 13px;
+      }
+      .resource small {
+        display: block;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .dark {
+        background: #0d1219;
+      }
+      .warning {
+        background: #242315;
+        border: 1px solid #625c31;
+        color: #e8e2b6;
+        border-radius: 14px;
+        padding: 17px;
+        font-size: 12px;
+      }
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 26px 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .foot {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+      @media (max-width: 850px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        .cards {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 560px) {
+        .wrap {
+          width: calc(100% - 28px);
+        }
+        .nav {
+          height: 66px;
+        }
+        .brand {
+          font-size: 19px;
+        }
+        nav {
+          display: none;
+        }
+        .nav > .btn {
+          font-size: 12px;
+          padding: 9px 13px;
+        }
+        .hero {
+          padding: 54px 0;
+        }
+        .cards,
+        .stats,
+        .resources {
+          grid-template-columns: 1fr;
+        }
+        section {
+          padding: 45px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap nav">
+        <a class="brand" href="#"><span class="logo">J</span> Jupiter</a>
+        <nav>
+          <a href="#features">Features</a><a href="#ecosystem">Ecosystem</a
+          ><a href="#resources">Resources</a>
+        </nav>
+        <a class="btn" href="https://jup.ag/" target="_blank" rel="noopener"
+          >Open Jupiter ↗</a
+        >
+      </div>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div>
+            <span class="eyebrow">● Solana DeFi & liquidity</span>
+            <h1>Swap smarter.<br /><span>Explore DeFi.</span></h1>
+            <p>
+              Jupiter is a Solana DeFi platform known for token swaps and
+              liquidity aggregation, alongside a broader suite of on-chain
+              products. Explore the ecosystem and launch the official swap
+              interface.
+            </p>
+            <a
+              class="btn"
+              href="https://jup.ag/swap"
+              target="_blank"
+              rel="noopener"
+              >Start swapping ↗</a
+            ><a
+              class="outline"
+              href="https://developers.jup.ag/docs"
+              target="_blank"
+              rel="noopener"
+              >Developer docs</a
+            >
+          </div>
+          <div class="swap">
+            <div class="swaphead">
+              <strong>Swap preview</strong
+              ><span class="live">● Official app</span>
+            </div>
+            <div class="token">
+              <div class="tokenrow">
+                <span class="label">You pay</span><b class="symbol">◎ SOL</b>
+              </div>
+              <div class="amount">1.00</div>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="token">
+              <div class="tokenrow">
+                <span class="label">You receive</span
+                ><b class="symbol">＄ USDC</b>
+              </div>
+              <div class="amount">Live quote in Jupiter ↗</div>
+            </div>
+            <a
+              class="btn full"
+              href="https://jup.ag/swap/SOL-USDC"
+              target="_blank"
+              rel="noopener"
+              >Get a live quote on jup.ag ↗</a
+            >
+            <p class="note">
+              Illustrative preview only. No quote, wallet connection or
+              transaction is performed on this demo page.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section id="features">
+        <div class="wrap">
+          <div class="tag">Why Jupiter</div>
+          <h2>Trading tools across Solana</h2>
+          <p class="intro">
+            Jupiter's developer documentation describes swap routing across
+            liquidity sources, along with APIs for token information and
+            pricing. Product availability can vary.
+          </p>
+          <div class="cards">
+            <article class="card">
+              <div class="ico">⇄</div>
+              <h3>Swap aggregation</h3>
+              <p>
+                Find token swap routes across Solana liquidity sources through
+                Jupiter's swap experience and routing infrastructure.
+              </p>
+            </article>
+            <article class="card">
+              <div class="ico">◈</div>
+              <h3>Token information</h3>
+              <p>
+                Explore token metadata, token lists and market information
+                through Jupiter's token data services.
+              </p>
+            </article>
+            <article class="card">
+              <div class="ico">⌁</div>
+              <h3>Price data</h3>
+              <p>
+                Jupiter offers pricing infrastructure designed to provide token
+                price information for Solana applications.
+              </p>
+            </article>
+            <article class="card">
+              <div class="ico">◷</div>
+              <h3>Limit & recurring orders</h3>
+              <p>
+                Jupiter's product ecosystem includes order tools for conditional
+                and recurring trading strategies. Check current availability.
+              </p>
+            </article>
+            <article class="card">
+              <div class="ico">↗</div>
+              <h3>Developer APIs</h3>
+              <p>
+                Build integrations using Jupiter's documented swap, token, price
+                and other developer APIs.
+              </p>
+            </article>
+            <article class="card">
+              <div class="ico">◎</div>
+              <h3>Solana ecosystem</h3>
+              <p>
+                Jupiter operates within Solana, where transactions and wallet
+                interactions are handled on-chain.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section id="ecosystem" class="dark">
+        <div class="wrap">
+          <div class="tag">Jupiter ecosystem</div>
+          <h2>Explore official products</h2>
+          <p class="intro">
+            Go directly to Jupiter's interfaces and documentation for current
+            product details.
+          </p>
+          <div class="stats">
+            <div class="stat">
+              <b>Swap</b><span>Token swaps and routed liquidity</span>
+            </div>
+            <div class="stat">
+              <b>Tokens</b><span>Token data and discovery tools</span>
+            </div>
+            <div class="stat">
+              <b>Developer</b><span>APIs, guides and integration docs</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="resources">
+        <div class="wrap">
+          <div class="tag">Official & independent references</div>
+          <h2>Research Jupiter</h2>
+          <p class="intro">
+            Use official sources for current product details, API behavior and
+            integration requirements.
+          </p>
+          <div class="resources">
+            <a
+              class="resource"
+              href="https://jup.ag/"
+              target="_blank"
+              rel="noopener"
+              ><div>
+                <strong>Jupiter app</strong
+                ><small>Official trading interface</small>
+              </div>
+              ↗</a
+            >
+            <a
+              class="resource"
+              href="https://developers.jup.ag/docs"
+              target="_blank"
+              rel="noopener"
+              ><div>
+                <strong>Developer documentation</strong
+                ><small>API guides and references</small>
+              </div>
+              ↗</a
+            >
+            <a
+              class="resource"
+              href="https://github.com/jup-ag"
+              target="_blank"
+              rel="noopener"
+              ><div>
+                <strong>Jupiter GitHub</strong
+                ><small>Public code and repositories</small>
+              </div>
+              ↗</a
+            >
+            <a
+              class="resource"
+              href="https://solana.com/docs"
+              target="_blank"
+              rel="noopener"
+              ><div>
+                <strong>Solana documentation</strong
+                ><small>Network and developer docs</small>
+              </div>
+              ↗</a
+            >
+            <a
+              class="resource"
+              href="https://solscan.io/"
+              target="_blank"
+              rel="noopener"
+              ><div>
+                <strong>Solscan</strong
+                ><small>Independent Solana explorer</small>
+              </div>
+              ↗</a
+            >
+            <a
+              class="resource"
+              href="https://status.jup.ag/"
+              target="_blank"
+              rel="noopener"
+              ><div>
+                <strong>Jupiter status</strong
+                ><small>Service status updates</small>
+              </div>
+              ↗</a
+            >
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="wrap">
+          <div class="warning">
+            <b>Risk notice:</b> Digital assets are volatile and can result in
+            substantial or total loss. This page is an independent informational
+            demo, not a wallet, exchange or financial adviser. It does not
+            connect to wallets, request signatures, quote trades or execute
+            transactions. Verify domains, token mint addresses, fees and
+            transaction details before using the official app.
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="wrap foot">
+        <span>© <span id="year"></span> Jupiter Swap informational demo</span
+        ><span
+          >Not affiliated with Jupiter.
+          <a href="https://jup.ag/" target="_blank" rel="noopener"
+            >Official Jupiter website ↗</a
+          ></span
+        >
+      </div>
+    </footer>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
